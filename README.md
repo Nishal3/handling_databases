@@ -1,18 +1,14 @@
 # Basic Table Creation and Connection Using the `psycopg2` and `sqlalchemy` Python Libraries
 
-``` Markdown
 ## PostgresSQL database project
 #### Installing required packages
-```
 
 ``` Python
 !pip install psycopg2
 !pip install sqlalchemy
 ```
 
-``` Markdown
 ### Importing necessary packages
-```
 
 ``` Python
 # Psycopg2 imports -- simple import lol
@@ -24,9 +20,7 @@ from sqlalchemy.exc import OperationalError
 import sqlalchemy
 ```
 
-``` Markdown
 ### Creating connections
-```
 
 ``` Python
 # Creating connections
@@ -48,10 +42,8 @@ except OperationalError as e:
 
 ```
 
-``` Markdown
 ### Creating cursors
 
-```
 
 ``` Python
 try:
@@ -70,10 +62,8 @@ except psycopg2.Error as e:
 
 ```
 
-``` Markdown
 ### Creating databases
 
-```
 
 ``` Python
 psyco_conn.set_session(autocommit=True)
@@ -104,9 +94,7 @@ except psycopg2.Error as e:
 
 ```
 
-``` Markdown
 ### Closing connections that have already been made and connecting to newly made DBs
-```
 
 ``` Python 
 alch_conn.close()
@@ -135,10 +123,8 @@ except Exception as e:
 
 ```
 
-``` Markdown
 ### Recreating cursors
 
-```
 
 ``` Python
 try:
@@ -157,13 +143,11 @@ except psycopg2.Error as e:
 
 ```
 
-``` Markdown
 ### Create table with the following columns
 | student_id | name | age | gender | subject | marks |
 |--------|----------|---------|----|---------|------|
 |  |      |     |        |        |       |
 
-```
 
 ``` Python
 # Set auto commit to true
@@ -194,10 +178,8 @@ except psycopg2.Error as e:
 
 ```
 
-``` Markdown
 ### Inserting data into tables
 
-```
 
 ``` Python
 # Inserting into sqlalchdb...
@@ -237,9 +219,7 @@ except psycopg2.Error as e:
 ```
 
 
-``` Markdown
 ### Seeing the additions
-```
 
 ``` Python
 # Using select psyco
@@ -271,10 +251,8 @@ while alch_row:
     alch_row = alch_cursor.fetchone()
 ```
 
-``` Markdown
 ### Closing cursor and connection
 
-```
 
 ``` Python
 psyco_cursor.close()
@@ -285,10 +263,8 @@ alch_conn.close()
 
 # Extracting Mental Health Data and Exporting to Local PostgreSQL Server
 
-``` Markdown
-# Extracting Mental Health Data to PostgreSQL
-## Import Packages
-```
+## Extracting Mental Health Data to PostgreSQL
+### Import Packages
 
 ``` Python
 import psycopg2
@@ -313,9 +289,7 @@ pd_question_db = pd.read_sql("SELECT * FROM Question", sqliteConnection)
 pd_survey_db = pd.read_sql("SELECT * FROM Survey", sqliteConnection) 
 ```
 
-``` Markdown
-## Structure of Data
-```
+### Structure of Data
 
 ``` Python
 print(pd_answer_db.head())
@@ -340,9 +314,7 @@ print(pd_survey_db.info())
 print("\n"+ "-"*100 + "\n")
 ```
 
-``` Markdown
 ## Get Connection with Local PostgreSQL Database and Make Cursor
-```
 
 ``` Python
 # Make the connection and set autocommit on
@@ -353,10 +325,8 @@ psycoConnection.set_session(autocommit=True)
 psycoCursor = psycoConnection.cursor()
 ```
 
-``` Markdown
 ## Create Database and Tables with Appropriate Columns
 ### Create Database and Create New Connection and Cursor
-```
 
 ``` python
 try:
@@ -395,9 +365,7 @@ psycoCursor.execute(answers_query)
 
 ```
 
-``` Markdown
 ## Pull Data from pandas DF and Place Into Local PostgreSQL Database
-```
 
 ``` Python
 conn_string = "postgresql://postgres:password@127.0.0.1:5432/mental_health_data"
